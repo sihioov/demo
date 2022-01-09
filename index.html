@@ -4,28 +4,41 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script crossorigin src="https://unpkg.com/react@16/umd/react.development.js"></script>
-    <script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
-    <title>Document</title>
+    <script src="https://unpkg.com/react@16/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+    <title>Document</title> 
 </head>
 <body>
     <div id="root"></div>
-    <script>
-        const e = React.createElement;
-
-        class LikeButton extends React.Component {
+    <script type="text/babel">
+        class GuGuDan extends React.Component {
             constructor(props) {
                 super(props);
+                this.state = {
+                    first: Math.ceil(Math.random() * 9),
+                    second: Math.ceil(Math.random() * 9),
+                    value: '',
+                    result: '',
+                };
             }
 
             render() {
-                return e('button', null, 'Like');
+                return (
+                    <div>
+                        <div>{this.state.first} 곱하기 {this.state.second} 는</div> 
+                        <form>
+                            <input type="number" value={this.state.value} onChange={(e) => this.setState({ value: e.target.value })} />    
+                            <button>입력!</button>
+                        </form>
+                        <div>{this.state.result}</div>
+                    </div>
+                );
             }
         }
     </script>
-    <script>
-        
-        ReactDOM.render(e(LikeButton), document.querySelector('#root'));
+    <script type="text/babel">
+        ReactDOM.render(<GuGuDan />, document.querySelector('#root'));
     </script>
 </body>
 </html>
